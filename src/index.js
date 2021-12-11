@@ -41,25 +41,17 @@ function renderBreeds(breeds){
 
     dropDown.addEventListener("change", (e) => {
         let selected = e.target.value;
-        let name= list.innerText
-        sortList(name, selected);
-        form.reset()
-    })
-
-function sortList(x, y="b"){
-    breedList.removeChild(list)
-    if(x[0] === y){
-
-        let l = document.createElement('li');
-        l.innerText = x;
-        breedList.appendChild(l)
+        let filteredBreeds = Object.keys(breeds).filter(breed => breed[0] == selected)
+        breedList.innerHTML = ""
+        for(const dog of filteredBreeds){
+            let list = document.createElement('li');
+        list.innerText = dog;
+        breedList.appendChild(list);
         prepFont();
-            }
-        }  
-    }   
-    prepFont();  
-};
-
+        }
+    
+    })
+    prepFont();
 
 //WORKS!!! Challenge 3 User clicks on li and the font color changes
 
@@ -78,5 +70,5 @@ function changeFont(e){
 
 //Challenge 4 need to filter breeds by first letter using the dropdown menu
 //Code is within Challenge 2
-
-
+    }
+}
